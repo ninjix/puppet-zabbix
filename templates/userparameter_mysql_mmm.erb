@@ -1,0 +1,2 @@
+# Adds Mysql Multi-Master check 
+UserParameter=mysqlmmm[*],sudo mmm_control show | grep $1 | cut -d " " -f4 | cut -d"/" -f2 | sed 's/\W//g'

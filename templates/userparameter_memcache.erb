@@ -1,0 +1,2 @@
+# Memcache
+UserParameter=memcache[*],/bin/echo -e "stats\nquit" | nc 127.0.0.1 11211 | awk '/STAT $1 /{print $$3}'

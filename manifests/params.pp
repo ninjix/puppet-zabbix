@@ -6,7 +6,7 @@
 #
 class zabbix::params {
   case $osfamily {
-    Debian  : {
+    RedHat  : {
       $general_options = {
         'config_dir'   => '/etc/zabbix',
         'log_filesize' => '0',
@@ -14,13 +14,31 @@ class zabbix::params {
         'group'        => 'zabbix'
       }
       $agent_options = {
-        'config'      => 'zabbix_agentd.conf',
+        'config'      => '/etc/zabbix_agentd.conf',
         'pid_dir'     => '/var/run/zabbix',
         'pid_file'    => 'zabbix_agentd.pid',
         'log_dir'     => '/var/log/zabbix-agent',
         'log_file'    => 'zabbix_agentd.log',
         'include_dir' => 'zabbix_agentd.conf.d',
         'script_dir'  => 'scripts',
+        'remote_cmds' => '1',
+      }
+    }
+	Debian : {
+      $general_options = {
+        'config_dir' => '/etc/zabbix',
+        'log_filesize' => '0',
+        'user' => 'zabbix',
+        'group' => 'zabbix'
+      }
+      $agent_options = {
+        'config' => 'zabbix_agentd.conf',
+        'pid_dir' => '/var/run/zabbix',
+        'pid_file' => 'zabbix_agentd.pid',
+        'log_dir' => '/var/log/zabbix-agent',
+        'log_file' => 'zabbix_agentd.log',
+        'include_dir' => 'zabbix_agentd.conf.d',
+        'script_dir' => 'scripts',
         'remote_cmds' => '1',
       }
     }
